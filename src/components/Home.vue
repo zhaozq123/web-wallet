@@ -121,11 +121,9 @@ export default {
       </el-form-item>
     </el-form>
     <template #footer>
-      <span class="dialog-footer">
-        <el-button   class="btn-sure"  @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button  class="btn-sure"  type="primary" @click="sendHander">
-          Confirm
-        </el-button>
+      <span class="dialog-footer flex-row flex-1" :class="isMoblie?'justify-center':'justify-end'">
+        <el-button v-if="!isMoblie" class="btn-sure"  @click="dialogFormVisible = false">Cancel</el-button>
+        <el-button  class="btn-sure"  type="primary" @click="sendHander">Confirm</el-button>
       </span>
     </template>
   </el-dialog>
@@ -178,8 +176,6 @@ h3 {
   font-size: 22px;
   padding: 20px;
 }
-
-
 
 .greetings{
 box-shadow: 0 0 5px 1px #9999999a;
