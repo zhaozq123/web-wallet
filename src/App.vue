@@ -3,28 +3,35 @@ import Home from './components/Home.vue'
 </script>
 
 <template>
-  <header>
-    <!-- <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" /> -->
+<div class="panel flex-row flex-1">
+    <header>
+    </header>
 
-    <div class="wrapper">
-      <Home msg="You did it!"/>
-    </div>
-  </header>
+    <main>
+        <Home msg="You did it!"/>
+    </main>
+</div>
 
-  <main>
-    <TheWelcome />
-  </main>
 </template>
 
 <style scoped>
   
 header {
   line-height: 1.5;
+    
 }
-
+.panel{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    /* padding: 10px; */
+}
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  /* margin: 0 auto 2rem; */
 }
 
 @media (min-width: 1024px) {
@@ -37,7 +44,7 @@ header {
     margin: 0 2rem 0 0;
   }
 
-  header .wrapper {
+   .wrapper {
     display: flex;
     flex-wrap: wrap;
   }
