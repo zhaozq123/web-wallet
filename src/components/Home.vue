@@ -85,9 +85,9 @@ export default {
     <div class="mt-20 flex-1 flex-row justify-center"><h1 class="green">XXX.xxx BCH</h1></div>
 
     <div :class="isMoblie?'flex-col':'flex-row'" class="font22 flex-row flex-1 justify-end ">
-      <span>CashAddr：</span>
+      <span class="bold">CashAddr：</span>
       <div class='flex-row'>
-            <div class="flex-row items-center addrWidth font18">{{cashAddr}}</div>
+            <div class="flex-row items-center addrWidth font22">{{cashAddr}}</div>
             <div class="ml-20 font22">
               <i class="iconfont icon-copy  iconFont" @click="()=>{copyText(cashAddr)}"></i>
               <i class="iconfont icon-erweima ml-10 iconFont" @click="()=>{QRmodalHander(cashAddr)}"></i>
@@ -96,9 +96,9 @@ export default {
     </div>
 
     <div :class="isMoblie?'flex-col':'flex-row'"  class="font22 mt-20 flex-row flex-1 justify-end "> 
-      <span>Legacy：</span>
+      <span class="bold">Legacy：</span>
       <div class='flex-row'>
-        <div class=" flex-row items-center addrWidth font18">{{legacy}}</div>
+        <div class=" flex-row items-center addrWidth font22">{{legacy}}</div>
         <div class="ml-20 font22">
           <i class="iconfont icon-copy  iconFont"  @click="()=>{copyText(legacy)}"></i>
           <i class="iconfont icon-erweima ml-10  iconFont" @click="()=>{QRmodalHander(legacy)}"></i>
@@ -109,26 +109,28 @@ export default {
 
 
   <!-- Form -->
-  <el-dialog v-model="dialogFormVisible" :width="isMoblie?'90%':'50%'"  title="Send confirmation">
+  <el-dialog v-model="dialogFormVisible" :width="isMoblie?'90%':'50%'"  :title="isMoblie?'':'Send confirmation'">
     <el-form  :label-position="isMoblie?'top':''" :model="form" class="p-20">
-      <el-form-item label="Reciever" :label-width="isMoblie?'':formLabelWidth">
-        <el-input v-model="form.name" autocomplete="off" />
+      <el-form-item  :label="isMoblie?'':'Reciever'" :label-width="isMoblie?'':formLabelWidth">
+        <span v-if="isMoblie" class="modalFont">Reciever</span>
+        <el-input  class="inputHeight" v-model="form.name" autocomplete="off" />
       </el-form-item>
-      <el-form-item label="Amount" :label-width="isMoblie?'':formLabelWidth">
-        <el-input v-model="form.region" autocomplete="off" />
+      <el-form-item :label="isMoblie?'':'Amount'" :label-width="isMoblie?'':formLabelWidth">
+        <span v-if="isMoblie" class="modalFont">Amount</span>
+        <el-input class="inputHeight" v-model="form.region" autocomplete="off" />
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="sendHander">
+        <el-button   class="btn-sure"  @click="dialogFormVisible = false">Cancel</el-button>
+        <el-button  class="btn-sure"  type="primary" @click="sendHander">
           Confirm
         </el-button>
       </span>
     </template>
   </el-dialog>
   <!-- QRmodal -->
-  <el-dialog v-model="QRmodal"  :width="isMoblie?'90%':'50%'" class="model-w" title="Send confirmation" >
+  <el-dialog v-model="QRmodal"  :width="isMoblie?'90%':'50%'" class="model-w" title="" >
     <el-form :model="form">
      <img  :src="QRUrl"  class="w-100" height="300"/>
     </el-form>
@@ -145,6 +147,9 @@ h1 {
 
 h3 {
   /* font-size: 1.2rem; */
+}
+.bold{
+  font-weight:bold
 }
 .mt-20{
  margin-top: 20px;
@@ -170,7 +175,11 @@ h3 {
 .btn-w{
   width: 175px;
   height: 35px;
+  font-size: 22px;
+  padding: 20px;
 }
+
+
 
 .greetings{
 box-shadow: 0 0 5px 1px #9999999a;
@@ -197,9 +206,20 @@ box-shadow: 0 0 5px 1px #9999999a;
     border-radius: 10px;
     background: #fff;
   }
-  .font18{
-    font-size: 18px;
+
+  .modalFont{
+    font-size: 22px !important;
   }
+
+  .inputHeight{
+    height: 50px !important; 
+  }
+  .btn-sure{
+  width: 175px;
+  height: 35px;
+  font-size: 22px;
+  padding: 25px 0px 25px 0px;
+}
 }
 
 @media (min-width: 750px) {
@@ -215,9 +235,6 @@ box-shadow: 0 0 5px 1px #9999999a;
   }
   .p-20{
     padding:0px 50px 0px 0px;
-  }
-  .font18{
-    font-size: 20px;
   }
 }
 </style>
