@@ -110,7 +110,7 @@ export default {
 
   <!-- Form -->
   <el-dialog v-model="dialogFormVisible" :width="isMoblie?'90%':'50%'"  title="Send confirmation">
-    <el-form :model="form" class="p-20">
+    <el-form  :label-position="isMoblie?'top':''" :model="form" class="p-20">
       <el-form-item label="Reciever" :label-width="isMoblie?'':formLabelWidth">
         <el-input v-model="form.name" autocomplete="off" />
       </el-form-item>
